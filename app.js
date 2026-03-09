@@ -19,23 +19,23 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 
-// --- PHẢI ĐẶT CÁC DÒNG NÀY TRƯỚC KHI KHAI BÁO ROUTE ---
+
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
-// ---------------------------------------------------
+
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Đăng ký các Route
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/products', productsRouter); // Đã chuyển xuống dưới express.json()
+app.use('/products', productsRouter); 
 app.use('/api/v1/categories', categoriesRouter);
 app.use('/api/v1/products', productsRouter);
 
-// Kết nối MongoDB (Docker của bạn đang chạy ở cổng 27017)
-mongoose.connect('mongodb://localhost:27017/NNPTUD-S3');
+
+mongoose.connect('mongodb://localhost:27017/WebDatabase');
 mongoose.connection.on('connected', function () {
   console.log("connected");
 });
